@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "change_element.h": "c",
+        "types.h": "c"
+    }
+}

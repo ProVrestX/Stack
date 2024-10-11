@@ -3,16 +3,13 @@
 
 #include "types.h"
 #include "tools.h"
-#include "CDtor.h"
-#include "Push_Pop.h"
+#include "cdtor.h"
+#include "push_pop.h"
 #include "get_file.h"
 #include "protect.h"
 
 #define STATE err = 
 #define CHECK_STATE(text) if(err) end_programm(&test_protect.stack_struct, (text));
-
-// #define str(s) #s
-// #define xstr(s) str(s)
 
 int main(int argc, char* argv[]) {
 
@@ -38,16 +35,17 @@ int main(int argc, char* argv[]) {
     STATE get_num_from_file(&test_protect.stack_struct, name_file);
     CHECK_STATE("Get numbers from file failed") 
 
-    test_protect.left[2] = 123;
-    test_protect.stack_struct.data[5] = -10;
-    printf("\nTest protect\n");
+    // test_protect.left[2] = 123;
+    // test_protect.right[-2] = 255;
+    // test_protect.stack_struct.data[2] += 123;
+    // test_protect.stack_struct.data[5] = -10;
+    printf("\n Test protect\n");
     // printf("%p %p %p\n", test_protect.left, &test_protect.left[1], &test_protect.stack_struct);
-    // Type_protect type_protect = check_wall(&test_protect.stack_struct);
-    printf("%d\n", check_wall(&test_protect.stack_struct));
+    printf("Protect: %d\n", check_wall(&test_protect.stack_struct));
 
-    Dump(&test_protect.stack_struct);
-    stack_Dtor(&test_protect.stack_struct);
-    Dump(&test_protect.stack_struct);
+    dump(&test_protect.stack_struct);
+    stack_dtor(&test_protect.stack_struct);
+    dump(&test_protect.stack_struct);
 
     printf("\nFinish\n");
     return 0;

@@ -4,12 +4,12 @@
 
 #include "types.h"
 #include "tools.h"
-#include "Push_Pop.h"
-#include "CDtor.h"
+#include "push_pop.h"
+#include "cdtor.h"
 
 int end_programm(Stack_struct* stack_struct, const char* exit_text) {
     printf("%s\n", exit_text);
-    stack_Dtor(stack_struct);
+    stack_dtor(stack_struct);
     exit(1);
 }
 
@@ -21,7 +21,7 @@ int check_arg(int argc, char** argv, char* name_file) {
     return 0;
 }
 
-int Dump(Stack_struct* stack_struct) {
+int dump(Stack_struct* stack_struct) {
     NO_DEBUG(printf("No DEBUG\n"));
 
     ON_DEBUG(

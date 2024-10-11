@@ -3,10 +3,10 @@
 
 #include "types.h"
 #include "tools.h"
-#include "CDtor.h"
-#include "Push_Pop.h"
+#include "cdtor.h"
+#include "push_pop.h"
 
-int stack_Push(Stack_struct* stack_struct, double number) {
+int stack_push(Stack_struct* stack_struct, double number) {
     if(stack_struct->size < 0 || stack_struct->size >= stack_struct->compacity) return 1;
 
     *(stack_struct->data + stack_struct->size) = number;
@@ -18,7 +18,7 @@ int stack_Push(Stack_struct* stack_struct, double number) {
     return 0;
 }
 
-int stack_Pop(Stack_struct* stack_struct, double* number, int pop) {
+int stack_pop(Stack_struct* stack_struct, double* number, int pop) {
     if(stack_struct->size <= 0) return 1;
 
     *number = *(stack_struct->data + stack_struct->size - 1);

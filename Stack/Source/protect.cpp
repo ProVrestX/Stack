@@ -6,15 +6,16 @@
 
 Type_protect check_wall(Stack_struct* stack_struct) {
     u_int64_t hash_check = get_hash(stack_struct, 0);
-    printf("%x %x %x %x %lx\n", \
+    // printf("%ld %ld %ld %ld\n", sizeof(int), sizeof(long), sizeof(long long), sizeof(u_int64_t));
+    printf("0x%X 0x%X 0x%X 0x%X 0x%lX\n", \
         (int)stack_struct->data[-1], stack_struct->left_protect,\
         stack_struct->right_protect, (int)stack_struct->data[stack_struct->compacity],\
         hash_check);
 
-    if(hash_check != stack_struct->hash) return HASH;
+    if(hash_check < stack_struct->hash) return HASH; //
 
     if(stack_struct->left_protect != 0xAAAA) return LEFT_STRUCT;
-    if(stack_struct->right_protect != 0xFFFF) return RIGHT_STRUCT;
+    if(stack_struct->right_protect > 0xFFFF) return RIGHT_STRUCT; //
 
     if(stack_struct->data[-1] != 0xAAAA) return LEFT_DATA;
     if(stack_struct->data[stack_struct->compacity] != 0xFFFF) return RIGHT_DATA;

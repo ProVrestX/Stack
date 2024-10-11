@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "tools.h"
-#include "Push_Pop.h"
+#include "push_pop.h"
 
 #define STATE err = 
 #define CHECK_STATE(text) if(err) end_programm(stack_struct, text);
@@ -26,10 +26,10 @@ int get_num_from_file(Stack_struct* stack_struct, char* name_file) {
 
     double number = 0;
     while (fscanf(stack_file, "%lf", &number) == 1) {
-        if(stack_Push(stack_struct, number) == 1) return 1;
+        if(stack_push(stack_struct, number) == 1) return 1;
 
         double getNum = 0;
-        STATE stack_Pop(stack_struct, &getNum, 0);
+        STATE stack_pop(stack_struct, &getNum, 0);
         CHECK_STATE("Get number failed") 
 
         printf("%.3lf  ", getNum);

@@ -3,9 +3,9 @@
 
 #include "types.h"
 #include "tools.h"
-#include "CDtor.h"
+#include "cdtor.h"
 
-int stack_Ctor(Stack_struct* stack_struct, size_t size_stack, const char* name_stack, const char* file_stack, int line_stack) {
+int stack_ctor(Stack_struct* stack_struct, size_t size_stack, const char* name_stack, const char* file_stack, int line_stack) {
 
     NO_DEBUG(printf("\n Init %ld\n", size_stack)); 
     ON_DEBUG(printf("\n Init %ld [Stack: %s (%p), File: %s, Line: %d]\n", size_stack, name_stack, stack_struct, file_stack, line_stack)); 
@@ -28,13 +28,16 @@ int stack_Ctor(Stack_struct* stack_struct, size_t size_stack, const char* name_s
     return 0;
 }
 
-void stack_Dtor(Stack_struct* stack_struct) {
+void stack_dtor(Stack_struct* stack_struct) {
+    if(stack_struct->data == NULL) return ;
+    
     printf(" Dtor\n");
 
     free(stack_struct->data - 1);
     stack_struct->size = 0;
     stack_struct->compacity = 0;
     stack_struct->hash = 0;
+
     ON_DEBUG(stack_struct->name = NULL);
     ON_DEBUG(stack_struct->file = NULL);
     ON_DEBUG(stack_struct->line = 0);
